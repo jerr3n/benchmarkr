@@ -1,0 +1,18 @@
+{
+  "name": "Benchmarkr",
+  "tree": {
+    "$className": "Model",
+    "Main": {
+      "$path": "src/Main.server.lua"
+    },
+    "Core": {
+      "$path": "src/Core"
+    },
+    "Studio": {
+      "$path": "src/Studio"
+    },
+    "UI": {
+      "$path": "src/UI"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rokit
+        run: cargo install rokit --locked --version 1.2.0
+
+      - name: Install project tools
+        run: rokit install --no-trust-check
+
+      - name: Check formatting
+        run: stylua --check src tests examples
+
+      - name: Lint
+        run: selene src tests examples
+
+      - name: Test
+        run: lune run tests/run.luau
+
+      - name: Build plugin
+        run: |
+          mkdir -p build
+          rojo build -o build/Benchmarkr.rbxm
+
+      - name: Inspect plugin artifact
+        run: lune run tests/inspect_model.luau
+
+      - name: Upload plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: Benchmarkr
+          path: build/Benchmarkr.rbxm

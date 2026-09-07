@@ -1,0 +1,6 @@
+- [x] Research Boatbomber's plugin for benchmarking.
+- [x] Build an original benchmarking plugin inspired by it, including:
+    - [x] A nested profiler with untracked-time reporting.
+    - [x] Distribution, per-run line, percentile error-bar, and profiler graphs.
+    - [x] Hover, visibility, zoom, pan, reset, and drill-down interactions.
+    - [x] Median-focused statistics, baseline comparisons, history, and reports.
