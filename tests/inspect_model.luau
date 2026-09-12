@@ -36,4 +36,8 @@ assert(
 	"graph must expose error-bar mode"
 )
 
+local icons = root.UI:FindFirstChild("Icons")
+assert(icons and icons:IsA("ModuleScript"), "artifact must include encoding-safe UI icons")
+assert(string.find(icons.Source, "utf8.char", 1, true), "icons must be created from code points")
+
 print("PASS plugin artifact structure")

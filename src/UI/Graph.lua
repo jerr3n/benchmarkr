@@ -1,7 +1,8 @@
 local Elements = require(script.Parent.Elements)
-local Theme = require(script.Parent.Theme)
 local ErrorBars = require(script.Parent.Parent.Core.ErrorBars)
+local Icons = require(script.Parent.Icons)
 local Stats = require(script.Parent.Parent.Core.Stats)
+local Theme = require(script.Parent.Theme)
 local Viewport = require(script.Parent.Parent.Core.Viewport)
 
 local Graph = {}
@@ -112,37 +113,37 @@ function Graph.new(parent)
 	self.title = Elements.label(
 		self.root,
 		"Distribution",
-		UDim2.new(1, -350, 0, 34),
+		UDim2.new(1, -376, 0, 34),
 		UDim2.fromOffset(12, 0),
 		{ medium = true, textSize = 13 }
 	)
 	self.histogramButton = Elements.button(
 		self.root,
-		"Distribution",
-		UDim2.fromOffset(90, 25),
-		UDim2.new(1, -335, 0, 5),
-		{ textSize = 11 }
+		Icons.label(Icons.DISTRIBUTION, "Distribution"),
+		UDim2.fromOffset(98, 25),
+		UDim2.new(1, -361, 0, 5),
+		{ textSize = 10 }
 	)
 	self.lineButton = Elements.button(
 		self.root,
-		"Line",
-		UDim2.fromOffset(54, 25),
-		UDim2.new(1, -239, 0, 5),
-		{ textSize = 11 }
+		Icons.label(Icons.LINE, "Line"),
+		UDim2.fromOffset(61, 25),
+		UDim2.new(1, -257, 0, 5),
+		{ textSize = 10 }
 	)
 	self.errorBarsButton = Elements.button(
 		self.root,
-		"Error bars",
-		UDim2.fromOffset(83, 25),
-		UDim2.new(1, -179, 0, 5),
-		{ textSize = 11 }
+		Icons.label(Icons.ERROR_BARS, "Error bars"),
+		UDim2.fromOffset(91, 25),
+		UDim2.new(1, -190, 0, 5),
+		{ textSize = 10 }
 	)
 	self.resetButton = Elements.button(
 		self.root,
-		"Reset view",
-		UDim2.fromOffset(82, 25),
-		UDim2.new(1, -92, 0, 5),
-		{ textSize = 11 }
+		Icons.label(Icons.RESET, "Reset view"),
+		UDim2.fromOffset(87, 25),
+		UDim2.new(1, -93, 0, 5),
+		{ textSize = 10 }
 	)
 
 	self.plot = Elements.new("Frame", {

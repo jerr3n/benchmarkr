@@ -9,6 +9,7 @@ local State = require("../src/Core/State")
 local Stats = require("../src/Core/Stats")
 local Trace = require("../src/Core/Trace")
 local Viewport = require("../src/Core/Viewport")
+local Icons = require("../src/UI/Icons")
 
 local passed = 0
 local failed = 0
@@ -81,6 +82,11 @@ local function sampleReport(id, median)
 		},
 	}
 end
+
+test("UI icons use encoding-safe code points and readable labels", function()
+	equal(Icons.CHECK, utf8.char(0x2713))
+	equal(Icons.label(Icons.PLAY, "Run"), utf8.char(0x25B6) .. " Run")
+end)
 
 test("statistics use interpolated percentiles", function()
 	local summary = Stats.summarize({ 4, 1, 3, 2 })

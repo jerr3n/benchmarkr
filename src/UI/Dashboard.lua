@@ -1,5 +1,6 @@
 local Elements = require(script.Parent.Elements)
 local Graph = require(script.Parent.Graph)
+local Icons = require(script.Parent.Icons)
 local ProfilerChart = require(script.Parent.ProfilerChart)
 local Stats = require(script.Parent.Parent.Core.Stats)
 
@@ -105,14 +106,14 @@ function Dashboard.new(widget, handlers)
 
 	self.runButton = Elements.button(
 		self.header,
-		"Run",
+		Icons.label(Icons.PLAY, "Run"),
 		UDim2.fromOffset(70, 28),
 		UDim2.fromOffset(241, 43),
 		{ background = "accent", color = "accentText", stroke = false }
 	)
 	self.stopButton = Elements.button(
 		self.header,
-		"Stop",
+		Icons.label(Icons.STOP, "Stop"),
 		UDim2.fromOffset(70, 28),
 		UDim2.fromOffset(241, 43),
 		{ background = "danger", color = "accentText", stroke = false }
@@ -120,17 +121,21 @@ function Dashboard.new(widget, handlers)
 	self.stopButton.Visible = false
 	self.newButton = Elements.button(
 		self.header,
-		"New benchmark",
-		UDim2.fromOffset(108, 28),
+		Icons.label(Icons.ADD, "New benchmark"),
+		UDim2.fromOffset(118, 28),
 		UDim2.fromOffset(321, 43)
 	)
-	self.historyButton =
-		Elements.button(self.header, "History", UDim2.fromOffset(72, 28), UDim2.fromOffset(439, 43))
+	self.historyButton = Elements.button(
+		self.header,
+		Icons.label(Icons.HISTORY, "History"),
+		UDim2.fromOffset(80, 28),
+		UDim2.fromOffset(449, 43)
+	)
 	self.pinButton = Elements.button(
 		self.header,
-		"Pin baseline",
-		UDim2.fromOffset(102, 28),
-		UDim2.fromOffset(521, 43)
+		Icons.label(Icons.BASELINE, "Pin baseline"),
+		UDim2.fromOffset(112, 28),
+		UDim2.fromOffset(539, 43)
 	)
 	self.pinButton.Visible = false
 
@@ -143,23 +148,23 @@ function Dashboard.new(widget, handlers)
 	)
 	self.jsonButton = Elements.button(
 		self.header,
-		"JSON",
-		UDim2.fromOffset(58, 26),
+		Icons.label(Icons.EXPORT, "JSON"),
+		UDim2.fromOffset(60, 26),
 		UDim2.fromOffset(59, 79),
 		{ textSize = 11 }
 	)
 	self.csvButton = Elements.button(
 		self.header,
-		"CSV",
-		UDim2.fromOffset(54, 26),
-		UDim2.fromOffset(123, 79),
+		Icons.label(Icons.EXPORT, "CSV"),
+		UDim2.fromOffset(56, 26),
+		UDim2.fromOffset(125, 79),
 		{ textSize = 11 }
 	)
 	self.rbxmButton = Elements.button(
 		self.header,
-		"RBXM",
-		UDim2.fromOffset(58, 26),
-		UDim2.fromOffset(183, 79),
+		Icons.label(Icons.EXPORT, "RBXM"),
+		UDim2.fromOffset(66, 26),
+		UDim2.fromOffset(187, 79),
 		{ textSize = 11 }
 	)
 	for _, button in ipairs({ self.jsonButton, self.csvButton, self.rbxmButton }) do
@@ -244,9 +249,9 @@ function Dashboard.new(widget, handlers)
 	)
 	self.closeHistoryButton = Elements.button(
 		self.historyDrawer,
-		"Close",
-		UDim2.fromOffset(54, 26),
-		UDim2.new(1, -64, 0, 9),
+		Icons.label(Icons.CLOSE, "Close"),
+		UDim2.fromOffset(62, 26),
+		UDim2.new(1, -72, 0, 9),
 		{ zIndex = 41, textSize = 11 }
 	)
 	self.historyList = Elements.new("ScrollingFrame", {
@@ -295,9 +300,9 @@ function Dashboard.new(widget, handlers)
 	)
 	self.modalClose = Elements.button(
 		self.modal,
-		"Close",
-		UDim2.fromOffset(56, 26),
-		UDim2.new(1, -68, 0, 8),
+		Icons.label(Icons.CLOSE, "Close"),
+		UDim2.fromOffset(62, 26),
+		UDim2.new(1, -74, 0, 8),
 		{ zIndex = 52, textSize = 11 }
 	)
 	self.modalHelp = Elements.label(
@@ -498,7 +503,7 @@ function Dashboard:renderStats()
 
 		local toggle = Elements.button(
 			card,
-			self.visibleCases[case.name] == false and "" or "â",
+			self.visibleCases[case.name] == false and "" or Icons.CHECK,
 			UDim2.fromOffset(20, 20),
 			UDim2.fromOffset(7, 7),
 			{ textSize = 11, radius = 3 }
@@ -647,7 +652,8 @@ function Dashboard:setReport(report, baseline, comparison, readOnly)
 		button.Visible = true
 	end
 	self.pinButton.Visible = true
-	self.pinButton.Text = baseline and "Update baseline" or "Pin baseline"
+	self.pinButton.Text =
+		Icons.label(Icons.BASELINE, baseline and "Update baseline" or "Pin baseline")
 end
 
 function Dashboard:setHistory(history)

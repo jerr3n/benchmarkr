@@ -5,8 +5,9 @@ local History = require(Core.History)
 local Report = require(Core.Report)
 local Runner = require(Core.Runner)
 local State = require(Core.State)
-local Theme = require(UI.Theme)
 local Dashboard = require(UI.Dashboard)
+local Icons = require(UI.Icons)
+local Theme = require(UI.Theme)
 local Loader = require(script.Parent.Loader)
 local ReportModel = require(script.Parent.ReportModel)
 local Template = require(script.Parent.Template)
@@ -68,8 +69,12 @@ function Controller.start(plugin)
 
 	local widget = createWidget(plugin)
 	local toolbar = plugin:CreateToolbar("Benchmarkr")
-	local toolbarButton =
-		toolbar:CreateButton("Benchmarkr.Toggle", "Open the Benchmarkr profiler", "", "Benchmarkr")
+	local toolbarButton = toolbar:CreateButton(
+		"Benchmarkr.Toggle",
+		"Open the Benchmarkr profiler",
+		"",
+		Icons.label(Icons.STOPWATCH, "Benchmarkr")
+	)
 	toolbarButton.ClickableWhenViewportHidden = true
 
 	local handlers = {}

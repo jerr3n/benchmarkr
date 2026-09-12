@@ -8,6 +8,16 @@ portable reports in one dockable Studio widget.
 Benchmarkr is inspired by [Boatbomber's Benchmarker](https://boatbomber.itch.io/benchmarker),
 while remaining an independent open-source implementation.
 
+## Documentation
+
+- [Getting started](docs/getting-started.md) — install the plugin, run a first suite, and use every
+  part of the results UI.
+- [Suite API](docs/suite-api.md) — complete ModuleScript contract, configuration reference,
+  profiler rules, and benchmarking guidance.
+- [Reports and history](docs/reports-and-history.md) — baselines, saved-run behavior, exports, and
+  the portable report format.
+- [Contributing](CONTRIBUTING.md) — project layout, development tools, tests, and release build.
+
 ## Install
 
 Build the plugin from source:
@@ -19,12 +29,12 @@ rojo build -o build/Benchmarkr.rbxm
 ```
 
 Then install `build/Benchmarkr.rbxm` as a local plugin from Roblox Studio's Plugins folder. The
-widget can be opened or closed with the **Benchmarkr** toolbar button.
+widget can be opened or closed with the **⏱ Benchmarkr** toolbar action.
 
-## Write a benchmark
+## Quick start
 
 Create a ModuleScript, select it in Explorer, and click **Run**. The fastest starting point is the
-plugin's **New benchmark** action, which inserts an undoable, documented example.
+plugin's **＋ New benchmark** action, which inserts an undoable, documented example.
 
 Existing Benchmarker-style suites work without changes:
 
@@ -148,7 +158,7 @@ lune run tests/inspect_model.luau
 
 The pure modules under `src/Core` contain the runner, statistics, profiler aggregation, history,
 and report formats. `src/Studio` owns plugin-only integration, while `src/UI` builds the native
-Studio widget and charts.
+Studio widget and charts. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full development workflow.
 
 ## License
 
